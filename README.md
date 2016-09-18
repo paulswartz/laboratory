@@ -16,6 +16,16 @@ config :laboratory,
   ]
 ```
 
+You can also specify options for the cookie:
+
+```
+config :laboratory,
+  cookie: [
+    max_age: 86_400
+    http_only: true
+  ]
+```
+
 Now, mount `Laboratory.Router` at an endpoint in your router:
 
 ```elixir

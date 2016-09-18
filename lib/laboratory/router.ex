@@ -18,7 +18,8 @@ defmodule Laboratory.Router do
   end
 
   post "/enable/:id" do
-    conn |> put_resp_cookie(id, "true") |> redirect_back
+    opts = Application.get_env(:laboratory, :cookie, [])
+    conn |> put_resp_cookie(id, "true", opts) |> redirect_back
   end
 
   EEx.function_from_file :def, :template, "lib/laboratory/index.eex", [:features, :path]
