@@ -3,8 +3,6 @@ defmodule Laboratory.Router do
 
   use Plug.Router
 
-  plug Plug.Static, at: "/", from: :laboratory, only: ~w(css js)
-
   plug :match
   plug :dispatch
 
@@ -12,7 +10,7 @@ defmodule Laboratory.Router do
     path = if conn.request_path == "/", do: "", else: conn.request_path
     conn
     |> put_resp_content_type("text/html")
-    |> resp(200, template(features(conn)))
+    |> resp(200, template(features(conn), path))
     |> send_resp
   end
 
@@ -23,6 +21,10 @@ defmodule Laboratory.Router do
   post "/enable/:id" do
     opts = Application.get_env(:laboratory, :cookie, [])
     conn |> put_resp_cookie(id, "true", opts) |> redirect_back
+  end
+
+  match _ do
+    send_resp(conn, 404, "")
   end
 
   EEx.function_from_file :def, :template, "lib/laboratory/index.eex", [:features, :path]
