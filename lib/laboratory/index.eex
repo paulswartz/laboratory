@@ -24,10 +24,12 @@
               <div class="button">
                 <%= if feature.enabled do %>
                   <form action="<%= path %>/disable/<%= feature.id %>" method="post">
-                      <input class="button-text" type="submit" value="Disable" />
+                    <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
+                    <input class="button-text" type="submit" value="Disable" />
                   </form>
                 <% else %>
                   <form action="<%= path %>/enable/<%= feature.id %>" method="post">
+                    <input type="hidden" name="_csrf_token" value="<%= Plug.CSRFProtection.get_csrf_token() %>">
                       <input class="button-text" type="submit" value="Enable" />
                   </form>
                 <% end %>
