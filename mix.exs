@@ -8,7 +8,7 @@ defmodule Laboratory.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      description: "Cookie based dev feature toggles for Phoenix apps",
-     package: package,
+     package: package(),
      deps: deps()]
   end
 
