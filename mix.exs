@@ -21,7 +21,7 @@ defmodule Laboratory.Mixfile do
   defp deps do
     [
       {:plug, ">= 1.0.0 and < 2.0.0"},
-      {:cowboy, "~> 1.0", only: :dev},
+      {:cowboy, "~> 1.0" },
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
