@@ -2,26 +2,26 @@ defmodule Laboratory.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :laboratory,
-     version: "0.0.1",
-     elixir: "~> 1.2",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     description: "Cookie based dev feature toggles for Phoenix apps",
-     package: package,
-     deps: deps()]
+    [
+      app: :laboratory,
+      version: "0.0.1",
+      elixir: "~> 1.2",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      description: "Cookie based dev feature toggles for Phoenix apps",
+      package: package(),
+      deps: deps()
+    ]
   end
 
   def application do
-    [mod: {Laboratory, []},
-     applications: [:plug, :cowboy, :logger]]
+    [mod: {Laboratory, []}, applications: [:plug, :cowboy, :logger]]
   end
-
 
   defp deps do
     [
       {:plug, ">= 1.0.0 and < 2.0.0"},
-      {:cowboy, "~> 1.0", only: :dev},
+      {:cowboy, "~> 2.15.0"},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
