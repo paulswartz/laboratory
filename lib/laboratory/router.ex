@@ -2,17 +2,18 @@ defmodule Laboratory.Router do
   require EEx
 
   use Plug.Router
+  import Plug.Conn
 
   plug(:match)
   plug(:dispatch)
 
   get "/" do
     path = if conn.request_path == "/", do: "", else: conn.request_path
+    html = template(features(conn), path)
 
     conn
     |> put_resp_content_type("text/html")
-    |> resp(200, template(features(conn), path))
-    |> send_resp
+    |> send_resp(200, html)
   end
 
   post "/disable/:id" do

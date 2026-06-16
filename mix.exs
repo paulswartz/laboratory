@@ -5,7 +5,7 @@ defmodule Laboratory.Mixfile do
     [
       app: :laboratory,
       version: "0.0.1",
-      elixir: "~> 1.2",
+      elixir: "~> 1.11",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       description: "Cookie based dev feature toggles for Phoenix apps",
@@ -15,13 +15,13 @@ defmodule Laboratory.Mixfile do
   end
 
   def application do
-    [mod: {Laboratory, []}, applications: [:plug, :cowboy, :logger]]
+    [mod: {Laboratory, []}]
   end
 
   defp deps do
     [
-      {:plug, ">= 1.0.0 and < 2.0.0"},
-      {:cowboy, "~> 2.15.0"},
+      {:plug, "~> 1.14"},
+      {:plug_cowboy, "~> 2.6"},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
